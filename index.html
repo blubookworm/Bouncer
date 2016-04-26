@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, user-scalable=no initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+
+		<title>Shield</title>
+
+		<style>
+			@import 'ui/css/evothings-app.css';
+			.cmn-toggle {
+				position: absolute;
+				margin-left: -9999px;
+				visibility: hidden;
+			}
+			.cmn-toggle + label {
+				display: block;
+				position: relative;
+				cursor: pointer;
+				outline: none;
+				user-select: none;
+			}
+			input.cmn-toggle-round + label {
+				padding: 2px;
+				width: 60px;
+				height: 30px;
+				background-color: #dddddd;
+				border-radius: 30px;
+			}
+			input.cmn-toggle-round + label:before,
+			input.cmn-toggle-round + label:after {
+				display: block;
+				position: absolute;
+				top: 1px;
+				left: 1px;
+				bottom: 1px;
+				content: "";
+			}
+			input.cmn-toggle-round + label:before {
+				right: 1px;
+				background-color: #f1f1f1;
+				border-radius: 30px;
+				transition: background 0.4s;
+			}
+			input.cmn-toggle-round + label:after {
+			  width: 30px;
+			  background-color: #fff;
+			  border-radius: 100%;
+			  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+			  transition: margin 0.4s;
+			}
+			input.cmn-toggle-round:checked + label:before {
+			  background-color: #8ce196;
+			}
+			input.cmn-toggle-round:checked + label:after {
+			  margin-left: 32px;
+			}
+			.settings{
+				background: url(settings_icon.png); 
+				float:left;
+				height: 30px;
+				width: 30px;
+				margin-top: 2px;
+				margin-bottom: 2px;
+			}
+			#display{
+				position: fixed;
+				overflow: scroll;
+				top: 0px;
+				left:calc(0px - 75%);
+				width: calc(75%);
+				height: calc(100%);
+				background-color: #FFF;
+/*				visibility: visible;*/
+				z-index: 3;
+				transition-duration: 0.6s;
+			}
+			#overlay{
+				position: fixed;
+				width: calc(100%);
+				height:calc(100%);
+				top: 0px;
+				left:0px;
+				opacity: 0;
+				background-color: #FFF;
+				transition-duration: 0.6s;
+				visibility: hidden;
+				z-index: 2;
+			}
+		</style>
+
+		<script>
+		// Redirect console.log to Evothings Workbench.
+		if (window.hyper && window.hyper.log) { console.log = hyper.log }
+		</script>
+	 
+		<script src="libs/evothings/evothings.js"></script>
+		<script src="libs/evothings/ui/ui.js"></script>
+
+	</head>
+
+	<body ontouchstart=""><!-- ontouchstart="" enables low-delay CSS transitions. -->
+
+		<header>
+			<button id="headerBackButton" class="back" onclick="history.back()" style="visibility: hidden;">
+				<img src="ui/images/arrow-left.svg" />
+			</button>
+
+<!--			<img class="logotype" src="ui/images/logo.svg" alt="Evothings" /> -->
+
+			<!--<button class="menu" onclick=""><img src="ui/images/menu.svg" /></button>-->
+		</header>
+		<button id="settings" class="settings"></button>
+		<div class="switch" style="float:right;">
+			<input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
+			<label for="cmn-toggle-1"></label>
+		</div>
+		<div style="float:right;height:34px;font-size:34px;font-family:'Proxima Nova Black';margin-right:15px;">TRACK</div> 
+		<button class="wide" onClick="location.href='pair.html'">Pair</button>
+		<br>
+		<button class="wide" onClick="location.href='alerts.html'">Alert History</button>
+		<br>
+		<button class="wide" onClick="location.href='sms.html'">SMS Emergency</button>
+		<div id="overlay"></div>
+		<div id="display"></div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script type="text/javascript" src="index.js"></script>
+
+	</body>
+
+</html>
